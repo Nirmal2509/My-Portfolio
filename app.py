@@ -1,26 +1,21 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
+
+# Dummy Data
+projects = [
+    {"name": "Text-to-Morse-Code Converter", "description": "A GUI-based Morse Code converter.", "link": "#"},
+    {"name": "Inventory Management System", "description": "Open-source inventory tracking tool.", "link": "#"},
+    {"name": "Cybersecurity Tool", "description": "A custom Python script for security analysis.", "link": "#"}
+]
 
 @app.route('/')
 def home():
-    return render_template('index.html')
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
+    return render_template('index.html', projects=projects)
 
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
-@app.route('/projects')
-def projects():
-    return render_template('projects.html')
-
-@app.route('/certifications')
-def certifications():
-    return render_template('certifications.html')
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

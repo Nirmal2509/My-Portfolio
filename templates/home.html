@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <img src="{{ url_for('static', filename='images/profile1.png') }}" alt="Nirmal Rajgor Profile" class="profile-pic">
+        <h1>Hi, I'm <span class="highlight">NIRMAL RAJGOR</span></h1>
+        <h2 class="subtitle">Full-Stack Developer | Security Enthusiast</h2>
+        <p>I love building interactive web applications, exploring cybersecurity, and solving real-world problems with code.</p>
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="#contact" class="btn secondary">Get in Touch</a>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>I'm a passionate developer and cybersecurity enthusiast with experience in <strong>Python, Flask, JavaScript, Web Security, and Red Team operations</strong>.
+       My mission is to create secure, efficient, and functional applications while constantly learning new technologies.
+       When I’m not coding, I’m exploring cybersecurity labs and building personal projects.</p>
+</section>
+
+<section class="skills" id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-card">Linux</div>
+        <div class="skill-card">Cybersecurity</div>
+        <div class="skill-card">Penetration Testing</div>
+        <div class="skill-card">OSINT</div>
+        <div class="skill-card">Network Security</div>
+        <div class="skill-card">Security Tools & Techniques</div>
+        <div class="skill-card">Python</div>
+        <div class="skill-card">Flask</div>
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">HTML & CSS</div>
+    </div>
+</section>
+
+<section class="projects" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+        {% if projects %}
+            {% for project in projects %}
+            <div class="project-card">
+                <h3>{{ project.name }}</h3>
+                <p>{{ project.description }}</p>
+                <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="btn small">View Project</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-projects">🚧 No projects yet, check back soon!</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="certifications" id="certifications">
+    <h2 class="section-title">Certifications & Courses</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/introduction.jpeg') }}" alt="Introduction to Cybersecurity" class="cert-img">
+            <h3>Introduction to Cybersecurity</h3>
+            <p>Hands-on foundational course covering cybersecurity principles and online threats.</p>
+        </div>
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/computernetworks.jpeg') }}" alt="Network Security" class="cert-img">
+            <h3>Computer Networks Security</h3>
+            <p>Comprehensive coverage of network security and risk management.</p>
+        </div>
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/osint.jpeg') }}" alt="OSINT Certificate" class="cert-img">
+            <h3>Open Source Intelligence (OSINT)</h3>
+            <p>Focused on gathering and analyzing publicly available data for cybersecurity.</p>
+        </div>
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/kalistart.jpeg') }}" alt="Kali Linux Penetration Testing" class="cert-img">
+            <h3>Getting Started with Kali Linux</h3>
+            <p>Learn Kali Linux basics, offensive tools, and reconnaissance techniques.</p>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <p>Email: romanticismcigarfish@gmail.com</p>
+</section>
+
+{% endblock %}

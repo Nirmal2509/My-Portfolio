@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="certifications" id="certifications">
+    <h2 class="section-title">Certifications & Courses</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/introduction.jpeg') }}" alt="Introduction to Cybersecurity" class="cert-img">
+            <h3>Introduction to Cybersecurity</h3>
+            <p>Hands-on foundational course covering cybersecurity principles and online threats.</p>
+        </div>
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/computernetworks.jpeg') }}" alt="Network Security" class="cert-img">
+            <h3>Computer Networks Security</h3>
+            <p>Comprehensive coverage of network security and risk management.</p>
+        </div>
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/osint.jpeg') }}" alt="OSINT Certificate" class="cert-img">
+            <h3>Open Source Intelligence (OSINT)</h3>
+            <p>Focused on gathering and analyzing publicly available data for cybersecurity.</p>
+        </div>
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/kalistart.jpeg') }}" alt="Kali Linux Penetration Testing" class="cert-img">
+            <h3>Getting Started with Kali Linux</h3>
+            <p>Learn Kali Linux basics, offensive tools, and reconnaissance techniques.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

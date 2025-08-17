@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title if title else "Nirmal Rajgor | Portfolio" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <h2 class="logo">NIRMAL<span>RAJGOR</span></h2>
+        <nav>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#certifications" class="nav-link">Certifications</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <p>Made with ❤️ by Nirmal Rajgor</p>
+        <div class="social-links">
+            <a href="https://github.com/Nirmal2509" target="_blank"><i class="fab fa-github" style="font-size: 20px;"></i></a>
+            <a href="https://linkedin.com/in/nirmal-rajgor-756879241" target="_blank"><i class="fab fa-linkedin" style="font-size: 20px;"></i></a>
+            <a href="mailto:romanticismcigarfish@gmail.com"><i class="fas fa-envelope" style="font-size: 20px;"></i></a>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sectionIds = Array.from(sections).map(sec => sec.id);
+    let isScrolling = false;
+    let currentIndex = 0;
+
+    function scrollToSection(index) {
+        if (index < 0 || index >= sections.length) return;
+        isScrolling = true;
+        sections[index].scrollIntoView({ behavior: "smooth" });
+        history.pushState(null, "", "#" + sections[index].id);
+        updateNavActive(index);
+        setTimeout(() => { isScrolling = false; }, 800);
+    }
+
+    function updateNavActive(index) {
+        navLinks.forEach(link => link.classList.remove("active"));
+        const activeLink = document.querySelector(`nav a[href="#${sections[index].id}"]`);
+        if(activeLink) activeLink.classList.add("active");
+    }
+
+    // Scroll by wheel
+    window.addEventListener("wheel", (e) => {
+        if (isScrolling) return;
+        if (e.deltaY > 0) currentIndex++;
+        else currentIndex--;
+        currentIndex = Math.max(0, Math.min(currentIndex, sections.length - 1));
+        scrollToSection(currentIndex);
+    });
+
+    // Navbar click scroll
+    navLinks.forEach((link, i) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentIndex = i;
+            scrollToSection(currentIndex);
+        });
+    });
+
+    // On page load, scroll to hash
+    const hash = window.location.hash.replace("#", "");
+    const hashIndex = sectionIds.indexOf(hash);
+    if(hashIndex !== -1) {
+        currentIndex = hashIndex;
+        sections[currentIndex].scrollIntoView();
+        updateNavActive(currentIndex);
+    }
+});
+</script>
+
+</body>
+</html>
